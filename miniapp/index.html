@@ -2,7 +2,7 @@
 <html lang="ru" data-niche="bakery">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
 <title>Витрина в Telegram</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -158,7 +158,7 @@ html[data-niche="flowers"] .main-btn .count, html[data-niche="barber"] .main-btn
 .field { display: grid; gap: 6px; padding: 10px 14px; }
 .field + .field { border-top: 1px solid var(--line); }
 .field label { font-size: 12px; color: var(--muted); font-weight: 600; }
-.field input, .field textarea { border: 0; background: transparent; padding: 0; outline: none; font-size: 15.5px; width: 100%; resize: none; }
+.field input, .field textarea { border: 0; background: transparent; padding: 0; outline: none; font-size: 16px; width: 100%; resize: none; }
 .field.bad label { color: var(--sale); }
 .field input::placeholder, .field textarea::placeholder { color: var(--muted); opacity: .7; }
 .err { color: var(--sale); font-size: 12.5px; font-weight: 600; }
@@ -169,7 +169,7 @@ html[data-niche="flowers"] .main-btn .count, html[data-niche="barber"] .main-btn
 .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
 
 .promo { display: flex; gap: 8px; padding: 8px; }
-.promo input { flex: 1; min-width: 0; border: 0; background: transparent; padding: 0 8px; outline: none; text-transform: uppercase; font-weight: 700; letter-spacing: .04em; }
+.promo input { flex: 1; min-width: 0; font-size: 16px; border: 0; background: transparent; padding: 0 8px; outline: none; text-transform: uppercase; font-weight: 700; letter-spacing: .04em; }
 .promo button { height: 40px; padding: 0 16px; border-radius: 12px; background: var(--ink); color: var(--bg); font-weight: 700; font-size: 14px; }
 .hint { margin: 8px 4px 0; font-size: 12.5px; color: var(--muted); }
 
@@ -222,7 +222,7 @@ html[data-niche="flowers"] .main-btn .count, html[data-niche="barber"] .main-btn
 .sheetmock .ttl { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-bottom: 1px solid #DADCE0; font-size: 12.5px; }
 .sheetmock .ttl i { width: 14px; height: 18px; border-radius: 2px; background: #1E8E3E; display: inline-block; }
 .sheetscroll { overflow-x: auto; }
-.sheetmock table { border-collapse: collapse; min-width: 560px; width: 100%; }
+.sheetmock table { border-collapse: collapse; min-width: 660px; width: 100%; }
 .sheetmock th, .sheetmock td { border: 1px solid #E3E3E3; padding: 5px 7px; text-align: left; white-space: nowrap; }
 .sheetmock th { background: #F8F9FA; color: #5F6368; font-weight: 400; text-align: center; }
 .sheetmock thead tr + tr th { background: #fff; color: #202124; font-weight: 700; text-align: left; }
@@ -545,7 +545,7 @@ function topHTML(title) {
   return `<div class="top"><button class="back" data-act="back" aria-label="Назад">${icon.back}</button><h2>${esc(title)}</h2></div>`;
 }
 function footHTML() {
-  return `<p class="foot">Демо-версия. Такой магазин в Telegram за 3 дня: <a href="https://t.me/${CONFIG.MANAGER}" target="_blank" rel="noopener">@${CONFIG.MANAGER}</a></p>`;
+  return `<p class="foot">Демо-версия. Такой магазин в Telegram за 2–3 дня: <a href="https://t.me/${CONFIG.MANAGER}" target="_blank" rel="noopener">@${CONFIG.MANAGER}</a></p>`;
 }
 
 /* booking (barber) */
@@ -604,11 +604,11 @@ function doneView() {
   const o = S.order; const n = N();
   const rows = [
     n.kind === "shop"
-      ? ["2026-10-24 19:12:05", "418277301", "@marina_k", n.items[0].name + " × 2", rub(n.items[0].price * 2), "Выдан ✅"]
-      : ["2026-10-24 19:12:05", "418277301", "@marina_k", "Мужская стрижка, Тимур", rub(1800), "Пришёл ✅"],
+      ? ["2026-10-24 19:12:05", "418277301", "@marina_k", n.items[0].name + " × 2", rub(n.items[0].price * 2), "Позвонить за 10 минут", "Выдан ✅"]
+      : ["2026-10-24 19:12:05", "418277301", "@marina_k", "Мужская стрижка, Тимур", rub(1800), "Покороче виски", "Пришёл ✅"],
     n.kind === "shop"
-      ? ["2026-10-24 20:47:31", "903114552", "@dmitry_p", n.items[2].name + " × 1", rub(n.items[2].price), "Выдан ✅"]
-      : ["2026-10-24 20:47:31", "903114552", "@dmitry_p", "Королевское бритьё, Артём", rub(2200), "Пришёл ✅"]
+      ? ["2026-10-24 20:47:31", "903114552", "@dmitry_p", n.items[2].name + " × 1", rub(n.items[2].price), "—", "Выдан ✅"]
+      : ["2026-10-24 20:47:31", "903114552", "@dmitry_p", "Королевское бритьё, Артём", rub(2200), "—", "Пришёл ✅"]
   ];
   return `<div class="done-head"><div class="tick">${icon.tick}</div>
       <h2>${n.kind === "shop" ? "Заказ" : "Запись"} №${o.no} ${n.kind === "shop" ? "принят" : "подтверждена"}</h2>
@@ -625,14 +625,14 @@ function doneView() {
 👤 Клиент: ${esc(o.client)}
 📞 ${esc(o.phone)}${o.address ? "\n📍 " + esc(o.address) : ""}
 🛍 ${n.kind === "shop" ? "Товары" : "Услуга"}:
-${o.items.map((t) => "• " + esc(t)).join("\n")}
+${o.items.map((t) => "• " + esc(t)).join("\n")}${o.comment ? "\n\n💬 Пожелания: " + esc(o.comment) : ""}
 
 💰 ИТОГО: ${rub(o.total)}</div></div>
       <div class="sheetmock"><div class="ttl"><i></i>Заказы · ${esc(n.name)}</div><div class="sheetscroll"><table>
-        <thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th></tr>
-        <tr><th class="rn">1</th><th>Время</th><th>ID</th><th>Username</th><th>${n.kind === "shop" ? "Товары" : "Услуга"}</th><th>Сумма</th><th>Статус</th></tr></thead>
+        <thead><tr><th class="rn"></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th></tr>
+        <tr><th class="rn">1</th><th>Время</th><th>ID</th><th>Username</th><th>${n.kind === "shop" ? "Товары" : "Услуга"}</th><th>Сумма</th><th>Пожелания</th><th>Статус</th></tr></thead>
         <tbody>${rows.map((r, i) => `<tr><td class="rn">${i + 2}</td>${r.map((c) => `<td>${esc(c)}</td>`).join("")}</tr>`).join("")}
-        <tr class="new" id="newrow" hidden><td class="rn">4</td><td>${esc(o.stamp)}</td><td>${esc(o.userId)}</td><td>${esc(o.user)}</td><td>${esc(o.items.join(", "))}</td><td>${rub(o.total)}</td><td>Новый заказ 🔔</td></tr></tbody>
+        <tr class="new" id="newrow" hidden><td class="rn">4</td><td>${esc(o.stamp)}</td><td>${esc(o.userId)}</td><td>${esc(o.user)}</td><td>${esc(o.items.join(", "))}</td><td>${rub(o.total)}</td><td>${esc(o.comment || "—")}</td><td>Новый заказ 🔔</td></tr></tbody>
       </table></div></div>
       <p class="note">${o.sent === "sent" ? "Заказ отправлен в Google Таблицу владельца." : o.sent === "error" ? "Не удалось отправить заказ: нет связи с таблицей. Напишите менеджеру, он примет заказ вручную." : "Демо-режим: в рабочей версии эта строка сама появляется в Google Таблице владельца, а сообщение приходит ему в Telegram. Примеры строк 2–3 условные."}</p>
     </section>
@@ -850,7 +850,7 @@ async function submitShop() {
   const u = tgUser();
   const payload = { ...u, items, total: t.total, name: S.form.name, phone: S.form.phone, address: S.mode === "delivery" ? S.form.address : "Самовывоз", comment: [S.form.card && "Открытка: " + S.form.card, S.form.comment].filter(Boolean).join(" | "), shop: n.name };
   const sent = await sendOrder(payload);
-  S.order = { no: 4800 + Math.floor(Math.random() * 190), items, total: t.total, stamp: stamp(), client: S.form.name, phone: S.form.phone, address: payload.address, sent, userId: u.userId, user: "@" + u.user };
+  S.order = { no: 4800 + Math.floor(Math.random() * 190), items, total: t.total, stamp: stamp(), client: S.form.name, phone: S.form.phone, address: payload.address, comment: payload.comment, sent, userId: u.userId, user: "@" + u.user };
   S.cart = {}; S.promo = ""; S.promoApplied = null; S.promoMsg = "";
   progress(false); hap.ok(); go("done"); confetti(); revealOwner();
 }
@@ -868,7 +868,7 @@ async function submitBooking() {
   const items = [`${s.name}, ${m.id === "any" ? "любой мастер" : m.name}, ${dayDate(S.day).toLocaleDateString("ru-RU")} ${S.time}`];
   const u = tgUser();
   const sent = await sendOrder({ ...u, items, total: s.price, name: S.form.name, phone: S.form.phone, address: "", comment: S.form.comment, shop: n.name });
-  S.order = { no: 1200 + Math.floor(Math.random() * 90), items, total: s.price, stamp: stamp(), client: S.form.name, phone: S.form.phone, when, sent, userId: u.userId, user: "@" + u.user };
+  S.order = { no: 1200 + Math.floor(Math.random() * 90), items, total: s.price, stamp: stamp(), client: S.form.name, phone: S.form.phone, when, comment: S.form.comment, sent, userId: u.userId, user: "@" + u.user };
   progress(false); hap.ok(); go("done"); confetti(); revealOwner();
 }
 function applyPromo() {
